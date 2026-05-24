@@ -7,55 +7,59 @@ using namespace std;
 
 int q[5];
 int n = 5;
-int f = -1;
-int r = -1;
+int front = -1;
+int rear = -1;
 
 void enqueue(int value)
 {
-    if((r + 1) % n == f)
+    if((rear + 1) % n == front)
     {
         cout << "Queue Overflow\n";
     }
-    else if(f == -1 && r == -1)
+    else if(front == -1 && rear == -1)
     {
-        f = 0;
-        r = 0;
-        q[r] = value;
+        front = 0;
+        rear = 0;
+        q[rear] = value;
     }
     else
     {
-        r = (r + 1) % n;
-        q[r] = value;
+        rear = (rear + 1) % n;
+        q[rear] = value;
     }
 }
 
 void dequeue()
 {
-    if(f == -1 && r == -1)
+    if(front == -1 && rear == -1)
     {
         cout << "Queue Underflow\n";
     }
-    else if(f == r)
+    else if(front == rear)
     {
-        f = -1;
-        r = -1;
+        front = -1;
+        rear = -1;
     }
     else
     {
-        f = (f + 1) % n;
+        front = (front + 1) % n;
     }
 }
 
 void Display()
 {
+    if(front == -1)
+    {
+        cout << "Queue is empty" << endl;
+        return;
+    }
     int i=front;
     while(i!=rear)
     { 
       cout<<q[i]<<endl;
       i=(i+1)%n; 
     } 
-    if(rear!=-1)
-    { cout<<q[rear]; }
+    cout<<q[rear]<<endl;
 }
 
 int main()
