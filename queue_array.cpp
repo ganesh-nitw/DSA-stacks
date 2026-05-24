@@ -38,7 +38,12 @@ void dequeue()
 }
 void Display()
 {
-	for(int i=rear;i>=front;i--)
+	if (front == -1 || front > rear)
+	{
+		cout << "Queue is empty" << endl;
+		return;
+	}
+	for(int i=front;i<=rear;i++)
 	{
 		cout<<q[i]<<endl;
 	}
